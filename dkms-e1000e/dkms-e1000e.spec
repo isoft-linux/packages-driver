@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 3.2.7.1 
-Release: 3 
+Release: 4 
 Summary: Dkms driver sources for Intel(R) Gigabit Family Ethernet Adapters 
 License: GPL
 URL: http://sourceforge.net/projects/e1000
@@ -32,7 +32,7 @@ sed -e "s/@MOD_VER@/%{version}/g" -i %{buildroot}/usr/src/%{mod_name}-%{version}
 cp -r src/*.c src/*.h %{buildroot}/usr/src/%{mod_name}-%{version}/
 cp -r src/Makefile %{buildroot}/usr/src/%{mod_name}-%{version}/
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version} 
 dkms build -m %{mod_name} -v %{version} 
@@ -51,6 +51,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /usr/src/%{mod_name}-%{version}
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 3.2.7.1-4
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 3.2.7.1-3
 - Initial build
 

@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 6.30.223.271 
-Release: 2
+Release: 3
 Summary: Dkms driver source for Broadcom 802.11 Linux STA wireless driver
 License: GPL
 URL: https://www.broadcom.com/support/?gid=1 
@@ -47,7 +47,7 @@ mkdir -p  %{buildroot}/etc/modprobe.d
 install -m 0644 %{SOURCE10} %{buildroot}/etc/modprobe.d/%{mod_name}-blacklist.conf
 
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version}
 dkms build -m %{mod_name} -v %{version}
@@ -67,6 +67,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 6.30.223.271-3
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 6.30.223.271-2
 - Initial build
 

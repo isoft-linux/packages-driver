@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.3.4 
-Release: 3
+Release: 4
 Summary: Dkms driver source for Mediatek 7630e PCIe Wifi 
 
 License: GPL
@@ -41,7 +41,7 @@ rm -rf %{buildroot}/usr/src/%{mod_name}-%{version}/*.sh
 mkdir -p %{buildroot}/lib/firmware
 install -m0644 firmware/Wi-FI/MT7650E234.bin %{buildroot}/lib/firmware/
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version}
 dkms build -m %{mod_name} -v %{version}
@@ -61,6 +61,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /lib/firmware/MT7650E234.bin
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.3.4-4
+- Switch from post to postrans to run postscript
+
 * Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.3.4-3
 - Fix build with kernel 4.4
 

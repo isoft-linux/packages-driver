@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 4.3.0.8.13968 
-Release: 3 
+Release: 4 
 Summary: Dkms driver sources for Realtek RTL8188EUS (RTL8188EUS, RTL8188ETV) WLAN
 License: GPL
 URL: http://www.realtek.com.tw
@@ -48,7 +48,7 @@ sed -i 's/^CONFIG_POWER_SAVING \= y/CONFIG_POWER_SAVING = n/' Makefile
 cp -r core hal include os_dep platform %{buildroot}/usr/src/%{mod_name}-%{version}/
 cp -r Kconfig Makefile %{buildroot}/usr/src/%{mod_name}-%{version}/
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version} 
 dkms build -m %{mod_name} -v %{version} 
@@ -68,6 +68,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 4.3.0.8.13968-4
+- Switch from post to postrans to run postscript
+
 * Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 4.3.0.8.13968-3
 - Fix build with kernel43/44
 

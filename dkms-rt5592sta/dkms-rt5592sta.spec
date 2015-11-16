@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.6.0.0
-Release: 2
+Release: 3
 Summary: Drivers for rt2860 chipset wireless cards
 
 License: GPL
@@ -60,7 +60,7 @@ install -D -m 0644 RT2860STA.dat %{buildroot}/etc/Wireless/RT5592STA/RT5592STA.d
 popd 
 
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version} 
 dkms build -m %{mod_name} -v %{version} 
@@ -80,6 +80,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /usr/src/%{mod_name}-%{version}
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-3
+- Switch from post to postrans to run postscript
+
 * Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-2
 - Remove precompiled elf
 

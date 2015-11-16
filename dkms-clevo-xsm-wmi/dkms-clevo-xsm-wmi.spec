@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 0.4 
-Release: 2
+Release: 3
 Summary: Dkms driver source for Clevo backlight keyboard based on tuxedo-wmi
 License: GPL
 URL: https://bitbucket.org/lynthium/clevo-xsm-wmi
@@ -52,6 +52,8 @@ cp -r module/Makefile module/clevo-xsm-wmi.c %{buildroot}/usr/src/%{mod_name}-%{
 
 %post
 %systemd_post clevo-xsm-wmi.service
+
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version}
 dkms build -m %{mod_name} -v %{version}
@@ -76,6 +78,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /usr/src/%{mod_name}-%{version}
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 0.4-3
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 0.4-2
 - Initial build
 

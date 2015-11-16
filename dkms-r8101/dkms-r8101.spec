@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 1.027.00 
-Release: 2
+Release: 3
 Summary: Dkms driver source for Realtek 8101 network cards
 
 License: GPL
@@ -42,7 +42,7 @@ mkdir -p  %{buildroot}/etc/modprobe.d
 install -m 0644 %{SOURCE2} %{buildroot}/etc/modprobe.d/%{mod_name}-blacklist.conf
 
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version}
 dkms build -m %{mod_name} -v %{version}
@@ -62,6 +62,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 1.027.00-3
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 8.040.00-2
 - Initial build
 

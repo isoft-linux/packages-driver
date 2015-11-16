@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 0.6.1 
-Release: 2
+Release: 3
 Summary: Dkms driver source for Terratec DMX6FireUSB soundcard, include firmware. 
 
 License: GPL
@@ -51,7 +51,7 @@ sed -e "s/@MOD_VER@/%{version}/g" -i %{buildroot}/usr/src/%{mod_name}-%{version}
 mkdir -p %{buildroot}/lib/firmware
 install -m0644 %{SOURCE5} %{SOURCE6} %{SOURCE7} %{buildroot}/lib/firmware
  
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version}
 dkms build -m %{mod_name} -v %{version}
@@ -71,6 +71,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /usr/src/%{mod_name}-%{version}
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 0.6.1-3
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 0.6.1-2
 - Initial build
 

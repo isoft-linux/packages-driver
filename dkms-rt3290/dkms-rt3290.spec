@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.6.0.0
-Release: 4
+Release: 5
 Summary: Drivers for rt3290 chipset wireless cards
 
 License: GPL
@@ -47,7 +47,7 @@ sed -i -e 's#REMAKE_INITRD="yes"##g' %{buildroot}/usr/src/%{mod_name}-%{version}
 install -m 0755 RT2860STA.dat %{buildroot}/etc/Wireless/RT2860STA/
 install -m 0644 blacklist-ralink.conf %{buildroot}/etc/modprobe.d/%{mod_name}-blacklist.conf
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version} 
 dkms build -m %{mod_name} -v %{version} 
@@ -68,6 +68,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-5
+- Switch from post to postrans to run postscript
+
 * Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-4
 - Do not remake initrd
 

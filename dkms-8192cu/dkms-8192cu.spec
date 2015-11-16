@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 4.0.2.9000 
-Release: 3
+Release: 4
 Summary: Drivers for Realtek RTL8188CUS (8188C, 8192C) chipset wireless cards 
 License: GPL
 URL: http://www.realtek.com.tw
@@ -52,7 +52,7 @@ sed -i 's/^CONFIG_POWER_SAVING \= y/CONFIG_POWER_SAVING = n/' Makefile
 cp -r core hal include os_dep %{buildroot}/usr/src/%{mod_name}-%{version}/
 cp -r Kconfig Makefile %{buildroot}/usr/src/%{mod_name}-%{version}/
 
-%post
+%posttrans
 (
 dkms add -m %{mod_name} -v %{version} 
 dkms build -m %{mod_name} -v %{version} 
@@ -72,6 +72,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 4.0.2.9000-4
+- Switch from post to postrans to run postscript
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 4.0.2.9000-3
 - Initial build
 
