@@ -1,0 +1,44 @@
+diff -Nur DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/chips/rtmp_chip.c DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/chips/rtmp_chip.c
+--- DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/chips/rtmp_chip.c	2012-03-26 17:55:22.000000000 +0800
++++ DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/chips/rtmp_chip.c	2015-11-14 17:11:12.685526426 +0800
+@@ -1231,7 +1231,7 @@
+ {
+ #ifdef CONFIG_STA_SUPPORT
+ #ifdef RTMP_MAC_PCI
+-		snprintf((PSTRING) pAd->nickname, sizeof(pAd->nickname), "RT2860STA");
++		snprintf((PSTRING) pAd->nickname, sizeof(pAd->nickname), "RT5592STA");
+ #endif /* RTMP_MAC_PCI */
+ #endif /* CONFIG_STA_SUPPORT */
+ }
+diff -Nur DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/include/os/rt_drv.h DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/include/os/rt_drv.h
+--- DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/include/os/rt_drv.h	2012-04-14 01:19:39.000000000 +0800
++++ DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/include/os/rt_drv.h	2015-11-14 17:12:07.264525449 +0800
+@@ -55,10 +55,10 @@
+ 
+ #ifdef CONFIG_STA_SUPPORT
+ #ifdef RTMP_MAC_PCI
+-#define STA_PROFILE_PATH			"/etc/Wireless/RT2860STA/RT2860STA.dat"
++#define STA_PROFILE_PATH			"/etc/Wireless/RT5592STA/RT5592STA.dat"
+ #define STA_DRIVER_VERSION			"2.6.0.0_20120326"
+ #ifdef MULTIPLE_CARD_SUPPORT
+-#define CARD_INFO_PATH			"/etc/Wireless/RT2860STA/RT2860STACard.dat"
++#define CARD_INFO_PATH			"/etc/Wireless/RT5592STA/RT5592STACard.dat"
+ #endif /* MULTIPLE_CARD_SUPPORT */
+ #endif /* RTMP_MAC_PCI */
+ 
+diff -Nur DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/include/os/rt_linux.h DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/include/os/rt_linux.h
+--- DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326/include/os/rt_linux.h	2015-11-14 17:12:20.552525211 +0800
++++ DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326n/include/os/rt_linux.h	2015-11-14 17:11:47.605525801 +0800
+@@ -123,10 +123,10 @@
+ 
+ #ifdef CONFIG_STA_SUPPORT
+ #ifdef RTMP_MAC_PCI
+-#define STA_PROFILE_PATH			"/etc/Wireless/RT2860STA/RT2860STA.dat"
++#define STA_PROFILE_PATH			"/etc/Wireless/RT5592STA/RT5592STA.dat"
+ #define STA_DRIVER_VERSION			"2.6.0.0_20120326"
+ #ifdef MULTIPLE_CARD_SUPPORT
+-#define CARD_INFO_PATH			"/etc/Wireless/RT2860STA/RT2860STACard.dat"
++#define CARD_INFO_PATH			"/etc/Wireless/RT5592STA/RT5592STACard.dat"
+ #endif /* MULTIPLE_CARD_SUPPORT */
+ #endif /* RTMP_MAC_PCI */
+ 
