@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.6.0.0
-Release: 1
+Release: 2
 Summary: Drivers for rt2860 chipset wireless cards
 
 License: GPL
@@ -52,7 +52,10 @@ sed -e "s/@MOD_VER@/%{version}/g" -i %{buildroot}/usr/src/%{mod_name}-%{version}
 
 pushd Linux/DPO_GPL_RT5592STA_LinuxSTA_v2.6.0.0_20120326
 cp -r * %{buildroot}/usr/src/%{mod_name}-%{version}/
-rm -rf %{buildroot}/usr/src/%{mod_name}-%{version}/tools
+
+#remove precompiled elf.
+rm -rf %{buildroot}/usr/src/%{mod_name}-%{version}/tools/bin2h
+
 install -D -m 0644 RT2860STA.dat %{buildroot}/etc/Wireless/RT5592STA/RT5592STA.dat
 popd 
 
@@ -77,5 +80,8 @@ dkms remove -m %{mod_name} -v %{version} --all
 /usr/src/%{mod_name}-%{version}
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-2
+- Remove precompiled elf
+
 * Fri Nov 13 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-2
 - Initial build
