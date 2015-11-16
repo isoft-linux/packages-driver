@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.3.4 
-Release: 2
+Release: 3
 Summary: Dkms driver source for Mediatek 7630e PCIe Wifi 
 
 License: GPL
@@ -14,6 +14,8 @@ URL: http://www.mediatek.com/en/downloads/mt7630-pcie/
 Source0: MT7630E-%{version}.tar.gz
 
 Source1: %{mod_name}-dkms.conf
+#Fix build with kernel44, also works with kernel43
+Patch0: mt7360e-fix-build-with-kernel44-and-also-43.patch
 
 Requires: kernel kernel-headers dkms gcc make
 
@@ -22,6 +24,7 @@ Requires: kernel kernel-headers dkms gcc make
 
 %prep
 %setup -q -n MT7630E-%{version}
+%patch0 -p1
 
 %build
 
@@ -58,6 +61,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /lib/firmware/MT7650E234.bin
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.3.4-3
+- Fix build with kernel 4.4
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 8.040.00-2
 - Initial build
 
