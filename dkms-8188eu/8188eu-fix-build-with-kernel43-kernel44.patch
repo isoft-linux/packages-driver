@@ -1,0 +1,21 @@
+diff -Nur 8188eu-v4.3.0.8_13968/include/rtw_debug.h 8188eu-v4.3.0.8_13968n/include/rtw_debug.h
+--- 8188eu-v4.3.0.8_13968/include/rtw_debug.h	2015-04-17 14:54:43.000000000 +0800
++++ 8188eu-v4.3.0.8_13968n/include/rtw_debug.h	2015-11-16 17:17:28.338642554 +0800
+@@ -227,7 +227,7 @@
+ 		if (sel == RTW_DBGDUMP)\
+ 			_DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 
+@@ -237,7 +237,7 @@
+ 		if (sel == RTW_DBGDUMP)\
+ 			DBG_871X_LEVEL(_drv_always_, fmt, ##arg); \
+ 		else {\
+-			if(_seqdump(sel, fmt, ##arg)) /*rtw_warn_on(1)*/; \
++			_seqdump(sel, fmt, ##arg) /*rtw_warn_on(1)*/; \
+ 		} \
+ 	}while(0)
+ 

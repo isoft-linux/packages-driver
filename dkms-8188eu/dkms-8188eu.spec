@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 4.3.0.8.13968 
-Release: 2 
+Release: 3 
 Summary: Dkms driver sources for Realtek RTL8188EUS (RTL8188EUS, RTL8188ETV) WLAN
 License: GPL
 URL: http://www.realtek.com.tw
@@ -17,6 +17,7 @@ Patch0: date_time_macro.patch
 Patch1: linux-4.0.patch
 Patch2: linux-4.2.patch
 Patch3: no_debug.patch
+Patch4: 8188eu-fix-build-with-kernel43-kernel44.patch
 
 Requires: kernel kernel-headers dkms gcc make
 
@@ -29,7 +30,7 @@ Requires: kernel kernel-headers dkms gcc make
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-
+%patch4 -p1
 
 find . -type f|xargs chmod 644 ||:
 
@@ -67,6 +68,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 4.3.0.8.13968-3
+- Fix build with kernel43/44
+
 * Sat Nov 14 2015 Cjacker <cjacker@foxmail.com> - 4.3.0.8.13968-2
 - Initial build
 
