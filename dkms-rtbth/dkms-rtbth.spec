@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 3.9.4.1 
-Release: 2
+Release: 3
 Summary: Kernel module sources for Ralink RT3290 bluetooth
 
 License: GPL
@@ -28,6 +28,9 @@ mkdir -p %{buildroot}/usr/src/%{mod_name}-%{version}
 mkdir -p %{buildroot}/etc/modprobe.d/
 
 cp -r ./* %{buildroot}/usr/src/%{mod_name}-%{version}
+
+#do not remake initrd
+sed -i -e 's#REMAKE_INITRD="yes"##g' %{buildroot}/usr/src/%{mod_name}-%{version}/dkms.conf
 
 #unneeded files
 rm -rf %{buildroot}/usr/src/%{mod_name}-%{version}/tools
@@ -56,6 +59,9 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/rt3290-bluetooth.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 3.9.4.1-3
+- Do not remake initrd in dkms.conf
+
 * Fri Nov 13 2015 Cjacker <cjacker@foxmail.com> - 3.9.4.1-2
 - Initial build
 
