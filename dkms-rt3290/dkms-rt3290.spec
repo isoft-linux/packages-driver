@@ -4,7 +4,7 @@
 
 Name: dkms-%{mod_name}
 Version: 2.6.0.0
-Release: 2
+Release: 3
 Summary: Drivers for rt3290 chipset wireless cards
 
 License: GPL
@@ -37,6 +37,7 @@ mkdir -p %{buildroot}/etc/modprobe.d/
 
 cp -Rv chips common include os rate_ctrl sta tools %{buildroot}/usr/src/%{mod_name}-%{version}/
 
+sed -i -e 's#%{version}rev1#%{version}#g' Makefile
 install -m 0644 Makefile %{buildroot}/usr/src/%{mod_name}-%{version}/
 install -m 0644 debian/dkms.conf %{buildroot}/usr/src/%{mod_name}-%{version}/
 install -m 0755 RT2860STA.dat %{buildroot}/etc/Wireless/RT2860STA/
@@ -63,5 +64,8 @@ dkms remove -m %{mod_name} -v %{version} --all
 /etc/modprobe.d/%{mod_name}-blacklist.conf
 
 %changelog
+* Mon Nov 16 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-3
+- Fix version issue in makefile
+
 * Fri Nov 13 2015 Cjacker <cjacker@foxmail.com> - 2.6.0.0-2
 - Initial build
