@@ -10,8 +10,8 @@ Summary: Dkms driver source for Terratec DMX6FireUSB soundcard, include firmware
 License: GPL
 URL: http://sourceforge.net/projects/sixfireusb
 Source0: http://sourceforge.net/projects/sixfireusb/files/sixfireusb-0.6.1.tar.bz2
+Source1: http://sourceforge.net/projects/sixfireusb/files/tools/fwinst.sh
 #Put all firmware in linux-firmware package.
-#Source1: http://sourceforge.net/projects/sixfireusb/files/tools/fwinst.sh
 ##firmware extracted by fwinst.sh
 #Source5: dmx6fireap.ihx
 #Source6: dmx6firel2.ihx
