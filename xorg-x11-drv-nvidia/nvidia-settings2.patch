@@ -1,0 +1,10 @@
+--- xorg-x11-drv-nvidia-346.72/nvidiapkg/nvidia-settings.desktop	2015-05-06 09:19:33.000000000 +0800
++++ xorg-x11-drv-nvidia-346.72/nvidiapkg/nvidia-settings.desktopnew	2015-10-19 16:07:52.403976774 +0800
+@@ -4,6 +4,6 @@
+ Name=NVIDIA X Server Settings
+ Comment=Configure NVIDIA X Server Settings
+ Exec=__UTILS_PATH__/nvidia-settings
+-Icon=__PIXMAP_PATH__/nvidia-settings.png
++Icon=/usr/share/pixmaps/nvidia-settings.png
+ Categories=Application;Settings;
+ 
