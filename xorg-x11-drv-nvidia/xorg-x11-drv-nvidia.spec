@@ -8,10 +8,9 @@
 Name:            xorg-x11-drv-nvidia
 Epoch:           1
 Version:         352.63
-Release:         5
+Release:         6
 Summary:         NVIDIA's proprietary display driver for NVIDIA graphic cards
 
-Group:           User Interface/X Hardware Support
 License:         Redistributable, no modification permitted
 URL:             http://www.nvidia.com/
 Source1:         ftp://download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}-no-compat32.run
@@ -74,7 +73,6 @@ http://rpmfusion.org/Howto/nVidia
 
 %package devel
 Summary:         Development files for %{name}
-Group:           Development/Libraries
 Requires:        %{name}-libs%{_isa} = %{?epoch}:%{version}-%{release}
 Requires:        %{name}-cuda%{_isa} = %{?epoch}:%{version}-%{release}
 
@@ -88,7 +86,6 @@ such as OpenGL headers.
 
 %package cuda
 Summary:         CUDA libraries for %{name}
-Group:           Development/Libraries
 # Requires:        %{_nvidia_serie}-kmod >= %{?epoch}:%{version}
 Provides:        nvidia-modprobe = %{version}-%{release}
 Provides:        nvidia-persistenced = %{version}-%{release}
@@ -104,7 +101,6 @@ This package provides the CUDA driver libraries.
 
 %package -n dkms-%{name}
 Summary:         %{name} dkms module
-Group:           System Environment/Kernel
 Requires: 	 kernel-devel
 Requires: xorg-x11-drv-nvidia >= %{epoch}:%{version}-%{release}
 
@@ -113,7 +109,6 @@ Requires: xorg-x11-drv-nvidia >= %{epoch}:%{version}-%{release}
 
 %package libs
 Summary:         Libraries for %{name}
-Group:           User Interface/X Hardware Support
 Requires:        %{name} = %{?epoch}:%{version}-%{release}
 Requires:        libvdpau%{_isa} >= 0.5
 
@@ -487,6 +482,9 @@ dkms remove -m nvidia -v %{version} --all
 %{_nvidia_libdir}/libnvidia-fbc.so
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1:352.63-6
+- remove Group info
+
 * Tue Nov 17 2015 sulit <sulitsrc@gmail.com> - 352.55-3
 -  add pre_build.sh and post_install.sh
 
