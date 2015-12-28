@@ -8,7 +8,7 @@
 Name:            xorg-x11-drv-nvidia
 Epoch:           1
 Version:         352.63
-Release:         6
+Release:         7
 Summary:         NVIDIA's proprietary display driver for NVIDIA graphic cards
 
 License:         Redistributable, no modification permitted
@@ -42,9 +42,9 @@ Requires(postun): ldconfig
 Requires:        which
 
 Requires:        %{name}-libs%{_isa} = %{?epoch}:%{version}-%{release}
+Requires:        %{name}-cuda%{_isa} = %{?epoch}:%{version}-%{release}
+Requires:        dkms-%{name} = %{epoch}:%{version}-%{release}
 
-Obsoletes:       %{_nvidia_serie}-kmod < %{?epoch}:%{version}
-Provides:        %{_nvidia_serie}-kmod-common = %{?epoch}:%{version}
 Conflicts:       xorg-x11-drv-nvidia-beta
 Conflicts:       xorg-x11-drv-nvidia-legacy
 Conflicts:       xorg-x11-drv-nvidia-71xx
@@ -102,7 +102,9 @@ This package provides the CUDA driver libraries.
 %package -n dkms-%{name}
 Summary:         %{name} dkms module
 Requires: 	 kernel-devel
-Requires: xorg-x11-drv-nvidia >= %{epoch}:%{version}-%{release}
+Requires: xorg-x11-drv-nvidia = %{epoch}:%{version}-%{release}
+Obsoletes:       %{_nvidia_serie}-kmod < %{?epoch}:%{version}
+Provides:        %{_nvidia_serie}-kmod-common = %{?epoch}:%{version}
 
 %description -n dkms-%{name}
 %{name} dkms module
@@ -482,6 +484,9 @@ dkms remove -m nvidia -v %{version} --all
 %{_nvidia_libdir}/libnvidia-fbc.so
 
 %changelog
+* Mon Dec 28 2015 sulit <sulitsrc@gmail.com> - 1:352.63-7
+- modify spec file for requires and add post_install.sh to dkms
+
 * Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1:352.63-6
 - remove Group info
 
